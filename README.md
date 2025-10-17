@@ -1,62 +1,32 @@
-<<<<<<< HEAD
-<div align="center">
-  
-  ![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/homeverse)
-  ![GitHub stars](https://img.shields.io/github/stars/codewithsadee/homeverse?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/codewithsadee/homeverse?style=social)
-[![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee_?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee_)
-  [![YouTube Video Views](https://img.shields.io/youtube/views/6HZ4nZmU_pE?style=social)](https://youtu.be/6HZ4nZmU_pE)
+# Homeverse Landing Page
 
-  <br />
-  <br />
-  
-  <img src="./readme-images/project-logo.png" />
+A single-page marketing experience for the Homeverse real estate brand. The project now focuses on the primary landing journey only and keeps the original HTML/CSS/JS stack.
 
-  <h2 align="center">Homeverse - Real estate website</h2>
+## What changed
+- Consolidated the project to `index.html` and removed references to multi-page navigation.
+- Updated navigation and footer links so every call-to-action anchors to a section that exists on the page.
+- Added lightweight scroll-reveal animations across hero, feature, property, blog, CTA, and footer elements.
 
-  Homeverse is fully responsive Real estate website, <br />Responsive for all devices, built using HTML, CSS, and JavaScript.
+## Scroll reveal animations
+- Elements marked with `data-reveal` receive a fade-up animation when entering the viewport and reset when leaving so they can play again.
+- Animation timing can be staggered per element with the inline CSS variable `--delay` (milliseconds).
+- Users who prefer reduced motion see content immediately with no animation thanks to `prefers-reduced-motion` handling in both CSS and JavaScript.
 
-  <a href="https://codewithsadee.github.io/homeverse/"><strong>➥ Live Demo</strong></a>
-
-</div>
-
-<br />
-
-### Demo Screeshots
-
-![homeverse Desktop Demo](./readme-images/desktop.png "Desktop Demo")
-![homeverse Mobile Demo](./readme-images/mobile.png "Mobile Demo")
-
-### Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
-
-### Run Locally
-
-To run **Homeverse** locally, run this command on your git bash:
-
-Linux and macOS:
+## Running locally
+Serve the static site with any web server. For example:
 
 ```bash
-sudo git clone https://github.com/codewithsadee/homeverse.git
+python -m http.server 8000
 ```
 
-Windows:
+Open [http://localhost:8000](http://localhost:8000) in your browser and navigate to `/`.
 
-```bash
-git clone https://github.com/codewithsadee/homeverse.git
-```
+## Deploying to Vercel
+1. Import the repository into Vercel.
+2. Choose the **Static Site** preset (no build step required).
+3. Deploy. Vercel will serve `index.html` as the entry point and expose the `/assets` directory automatically.
 
-### Contact
+## Removed or archived
+- Standalone pages (about, blog, contact, etc.) that previously existed in the upstream project are no longer referenced.
+- Footer and navigation items that pointed to removed routes now scroll to live sections on the landing page.
 
-If you want to contact with me you can reach me at [Twitter](https://www.twitter.com/codewithsadee).
-
-### License
-
-This project is **free to use** and does not contains any license.
-=======
-# annurta-website
-testing promosi website
->>>>>>> 59dfd1ed837c80bc96c190346bf5c28f0e9834ff
