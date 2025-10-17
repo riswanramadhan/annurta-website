@@ -385,6 +385,7 @@ button, a { transition: var(--transition); }
   visibility: visible;
   transform: translateX(310px);
   transition: 0.25s ease-out;
+  
 }
 
 .navbar-top {
@@ -1585,7 +1586,7 @@ button, a { transition: var(--transition); }
   .navbar-list {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
   }
 
   .navbar-link {

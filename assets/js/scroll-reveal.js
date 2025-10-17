@@ -1,5 +1,5 @@
 (function () {
-  const revealElements = document.querySelectorAll('[data-reveal]');
+  const revealElements = Array.from(document.querySelectorAll('[data-reveal]'));
 
   if (!revealElements.length) {
     return;
@@ -19,16 +19,26 @@
   };
 
   const startObserver = () => {
+    if (!('IntersectionObserver' in window)) {
+      revealElements.forEach((element) => {
+        element.classList.add('reveal-visible');
+      });
+      return;
+    }
+
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        const isElementVisible = entry.isIntersecting || entry.intersectionRatio > 0;
+
+        if (isElementVisible) {
           entry.target.classList.add('reveal-visible');
         } else {
           entry.target.classList.remove('reveal-visible');
         }
       });
     }, {
-      threshold: 0.2
+      threshold: 0.2,
+      rootMargin: '0px 0px -10%'
     });
 
     revealElements.forEach((element) => observer.observe(element));
@@ -51,7 +61,11 @@
     startObserver();
   };
 
-  handlePreferenceChange();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handlePreferenceChange, { once: true });
+  } else {
+    handlePreferenceChange();
+  }
 
   if (typeof reduceMotionQuery.addEventListener === 'function') {
     reduceMotionQuery.addEventListener('change', handlePreferenceChange);
