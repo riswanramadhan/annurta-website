@@ -165,6 +165,22 @@ button, a { transition: var(--transition); }
     transform: none;
     transition: none;
   }
+
+  .scroll-wrapper::before,
+  .scroll-wrapper::after,
+  .scroll-wrapper .scroll-button {
+    transition: none;
+  }
+
+  .scroll-wrapper .scroll-button {
+    transform: translateY(-50%);
+  }
+
+  .scroll-wrapper .scroll-button ion-icon,
+  .scroll-wrapper.show-hint:not(.is-start)::before,
+  .scroll-wrapper.show-hint:not(.is-end)::after {
+    animation: none !important;
+  }
 }
 
 .h1,
@@ -260,11 +276,10 @@ button, a { transition: var(--transition); }
   align-items: flex-start;
   gap: 15px;
   overflow-x: auto;
-  margin-inline: -15px;
-  padding-inline: 15px;
   scroll-padding-left: 15px;
   padding-bottom: 60px;
   scroll-snap-type: inline mandatory;
+  scroll-behavior: smooth;
 }
 
 .has-scrollbar > li {
@@ -287,6 +302,152 @@ button, a { transition: var(--transition); }
 .has-scrollbar::-webkit-scrollbar-button { width: 15%; }
 
 
+.scroll-wrapper {
+  position: relative;
+  margin-inline: -15px;
+  padding-inline: 15px;
+  --scroll-fade-color: var(--white);
+  --scroll-button-offset: clamp(8px, 2vw, 24px);
+  --scroll-button-size: 44px;
+  --scroll-hint-shift: 10px;
+}
+
+.scroll-wrapper::before,
+.scroll-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(28px, 14vw, 110px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.scroll-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--scroll-fade-color), transparent);
+}
+
+.scroll-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--scroll-fade-color), transparent);
+}
+
+.scroll-wrapper.is-scrollable:not(.is-start)::before { opacity: 1; }
+
+.scroll-wrapper.is-scrollable:not(.is-end)::after { opacity: 1; }
+
+.scroll-wrapper.show-hint:not(.is-start)::before,
+.scroll-wrapper.show-hint:not(.is-end)::after {
+  animation: scroll-fade-hint 1.8s ease-in-out 2;
+}
+
+.scroll-wrapper:not(.is-scrollable) .scroll-button {
+  display: none;
+}
+
+.scroll-wrapper .scroll-button {
+  position: absolute;
+  top: 50%;
+  width: var(--scroll-button-size);
+  height: var(--scroll-button-size);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  background: hsla(0, 0%, 100%, 0.92);
+  color: var(--prussian-blue);
+  box-shadow: var(--shadow-1);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scroll-wrapper .scroll-button[data-scroll-button="left"] {
+  left: var(--scroll-button-offset);
+}
+
+.scroll-wrapper .scroll-button[data-scroll-button="right"] {
+  right: var(--scroll-button-offset);
+}
+
+.scroll-wrapper.is-scrollable .scroll-button {
+  opacity: 0.92;
+  pointer-events: auto;
+}
+
+.scroll-wrapper .scroll-button:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-wrapper .scroll-button:is(:hover, :focus-visible) {
+  background: var(--orange-soda);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.scroll-wrapper .scroll-button:focus-visible {
+  outline: 2px solid var(--orange-soda);
+  outline-offset: 3px;
+}
+
+.scroll-wrapper .scroll-button:active {
+  transform: translateY(-50%) scale(0.97);
+}
+
+.scroll-wrapper .scroll-button ion-icon {
+  font-size: calc(var(--scroll-button-size) * 0.45);
+}
+
+.scroll-wrapper .scroll-button:disabled ion-icon { animation: none; }
+
+.scroll-wrapper.is-scrollable:not(.is-end):not(.has-interacted) [data-scroll-button="right"] ion-icon {
+  animation: scroll-hint-right 1.8s ease-in-out infinite;
+}
+
+.scroll-wrapper.is-scrollable:not(.is-start):not(.has-interacted) [data-scroll-button="left"] ion-icon {
+  animation: scroll-hint-left 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-fade-hint {
+  0% { opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes scroll-hint-right {
+  0% {
+    transform: translateX(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(var(--scroll-hint-shift));
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.55;
+  }
+}
+
+@keyframes scroll-hint-left {
+  0% {
+    transform: translateX(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(calc(var(--scroll-hint-shift) * -1));
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.55;
+  }
+}
 
 
 
@@ -1270,7 +1431,11 @@ button, a { transition: var(--transition); }
     padding: 12px 28px;
   }
 
-
+.scroll-wrapper {
+    --scroll-button-size: 50px;
+    --scroll-button-offset: clamp(10px, 2.4vw, 28px);
+    --scroll-hint-shift: 12px;
+  }
 
   /**
    * HEADER
@@ -1416,6 +1581,11 @@ button, a { transition: var(--transition); }
 
   .btn { padding: 15px 40px; }
 
+.scroll-wrapper {
+    --scroll-button-size: 56px;
+    --scroll-button-offset: clamp(12px, 2.2vw, 34px);
+    --scroll-hint-shift: 14px;
+  }
 
 
   /**
@@ -1568,6 +1738,11 @@ button, a { transition: var(--transition); }
 
   .has-scrollbar > li { min-width: calc(33.33% - 16.66px); }
 
+  .scroll-wrapper {
+      --scroll-button-size: 60px;
+      --scroll-button-offset: clamp(14px, 1.8vw, 40px);
+      --scroll-hint-shift: 16px;
+    }
 
 
   /**

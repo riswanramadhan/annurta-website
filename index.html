@@ -404,10 +404,16 @@
 
           <h2 class="h2 section-title">Pilihan Rumah Annurta Residence</h2>
 
-          <ul class="property-list has-scrollbar">
+           <div class="scroll-wrapper" data-scroll-container>
+            <button class="scroll-button" type="button" data-scroll-button="left"
+              aria-label="Scroll unit rumah ke kiri">
+              <ion-icon name="chevron-back-outline" aria-hidden="true"></ion-icon>
+            </button>
 
-            <li>
-              <div class="property-card">
+            <ul class="property-list has-scrollbar" data-scroll-target>
+
+              <li>
+                <div class="property-card">
 
                 <figure class="card-banner">
 
@@ -876,9 +882,15 @@
                 </div>
 
               </div>
-            </li>
+              </li>
 
-          </ul>
+            </ul>
+
+            <button class="scroll-button" type="button" data-scroll-button="right"
+              aria-label="Scroll unit rumah ke kanan">
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
 
         </div>
       </section>
@@ -1048,10 +1060,16 @@
 
           <h2 class="h2 section-title">Berita Terakhir Kami</h2>
 
-          <ul class="blog-list has-scrollbar">
+          <div class="scroll-wrapper" data-scroll-container>
+            <button class="scroll-button" type="button" data-scroll-button="left"
+              aria-label="Scroll berita ke kiri">
+              <ion-icon name="chevron-back-outline" aria-hidden="true"></ion-icon>
+            </button>
 
-            <li>
-              <div class="blog-card">
+            <ul class="blog-list has-scrollbar" data-scroll-target>
+
+              <li>
+                <div class="blog-card">
 
                 <figure class="card-banner">
                   <img src="./assets/images/blog-1.png" alt="The Most Inspiring Interior Design Of 2021" class="w-100">
@@ -1100,10 +1118,12 @@
                 </div>
 
               </div>
-            </li>
+              </li>
 
-            <li>
-              <div class="blog-card">
+              
+
+              <li>
+                <div class="blog-card">
 
                 <figure class="card-banner">
                   <img src="./assets/images/blog-2.jpg" alt="Recent Commercial Real Estate Transactions" class="w-100">
@@ -1208,6 +1228,12 @@
             </li>
 
           </ul>
+
+            <button class="scroll-button" type="button" data-scroll-button="right"
+              aria-label="Scroll berita ke kanan">
+              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
 
         </div>
       </section>
