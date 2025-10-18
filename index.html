@@ -25,6 +25,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 
 <body>
@@ -153,7 +154,7 @@
           <button class="header-bottom-actions-btn" aria-label="Search">
             <ion-icon name="search-outline"></ion-icon>
 
-            <span>Search</span>
+            <span>Cari</span>
           </button>
 
           <button class="header-bottom-actions-btn" aria-label="Profile">
@@ -165,7 +166,7 @@
           <button class="header-bottom-actions-btn" aria-label="Cart">
             <ion-icon name="cart-outline"></ion-icon>
 
-            <span>Cart</span>
+            <span>Unit</span>
           </button>
 
           <button class="header-bottom-actions-btn" data-nav-open-btn aria-label="Open Menu">
@@ -192,7 +193,7 @@
         - #HERO
       -->
 
-      <section class="hero" id="home">
+      <section class="hero" id="home" data-aos="fade-up">
         <div class="container">
 
           <div class="hero-content">
@@ -228,7 +229,7 @@
         - #ABOUT
       -->
 
-      <section class="about" id="about">
+      <section class="about" id="about" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <figure class="about-banner">
@@ -302,7 +303,7 @@
         - #SERVICE
       -->
 
-      <section class="service" id="service">
+      <section class="service" id="service" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <p class="section-subtitle">Fokus Utama</p>
@@ -397,7 +398,7 @@
         - #PROPERTY
       -->
 
-      <section class="property" id="property">
+      <section class="property" id="property" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <p class="section-subtitle">Unit Rumah</p>
@@ -903,7 +904,7 @@
         - #FEATURES
       -->
 
-      <section class="features">
+      <section class="features" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <p class="section-subtitle">Fasilitas Kami</p>
@@ -1053,7 +1054,7 @@
         - #BLOG
       -->
 
-      <section class="blog" id="blog">
+      <section class="blog" id="blog" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <p class="section-subtitle">Blog & Berita</p>
@@ -1246,7 +1247,7 @@
         - #CTA
       -->
 
-      <section class="cta">
+      <section class="cta" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
 
           <div class="cta-card">
@@ -1461,7 +1462,16 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 700,        // durasi animasi (ms)
+    easing: 'ease-out',   // kurva animasi
+    once: true,           // animasi sekali saja
+    offset: 80,           // jarak trigger dari bawah viewport
+    disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  });
+</script>
 </body>
 
 </html>
